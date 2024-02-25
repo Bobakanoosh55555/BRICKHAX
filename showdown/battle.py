@@ -284,7 +284,6 @@ class Battler:
         self.future_sight = (0, 0)
 
         self.account_name = None
-
         self.last_used_move = LastUsedMove('', '', 0)
 
     def mega_revealed(self):
@@ -456,6 +455,8 @@ class Pokemon:
         self.nature = nature
         self.evs = evs
         self.speed_range = StatRange(min=0, max=float("inf"))
+        self.restcount = 0
+
 
         try:
             self.base_stats = pokedex[self.name][constants.BASESTATS]

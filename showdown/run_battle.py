@@ -44,7 +44,6 @@ async def async_pick_move(battle):
         battle.user.last_used_move = LastUsedMove(battle.user.active.name, choice.split()[2], battle.turn)
     return best_move
 
-
 async def handle_team_preview(battle, ps_websocket_client):
     battle_copy = deepcopy(battle)
     battle_copy.user.active = Pokemon.get_dummy()
@@ -171,7 +170,7 @@ async def start_battle(ps_websocket_client, pokemon_battle_type):
     else:
         battle = await start_standard_battle(ps_websocket_client, pokemon_battle_type)
 
-    await ps_websocket_client.send_message(battle.battle_tag, ["hf"])
+    # await ps_websocket_client.send_message(battle.battle_tag, ["hf"])
     await ps_websocket_client.send_message(battle.battle_tag, ['/timer on'])
 
     return battle
@@ -187,7 +186,7 @@ async def pokemon_battle(ps_websocket_client, pokemon_battle_type):
             else:
                 winner = None
             logger.debug("Winner: {}".format(winner))
-            await ps_websocket_client.send_message(battle.battle_tag, ["gg"])
+            # await ps_websocket_client.send_message(battle.battle_tag, ["gg"])
             await ps_websocket_client.leave_battle(battle.battle_tag, save_replay=ShowdownConfig.save_replay)
             return winner
         else:

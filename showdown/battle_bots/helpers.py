@@ -26,21 +26,22 @@ def format_decision(battle, decision):
             raise ValueError("Tried to switch to: {}".format(switch_pokemon))
     else:
         message = "/choose move {}".format(decision)
-        if battle.user.active.can_mega_evo:
-            message = "{} {}".format(message, constants.MEGA)
-        elif battle.user.active.can_ultra_burst:
-            message = "{} {}".format(message, constants.ULTRA_BURST)
+        # if battle.user.active.can_mega_evo:
+        #     message = "{} {}".format(message, constants.MEGA)
+        # elif battle.user.active.can_ultra_burst:
+        #     message = "{} {}".format(message, constants.ULTRA_BURST)
+        #
+        # # only dynamax on last pokemon
+        # if battle.user.active.can_dynamax and all(p.hp == 0 for p in battle.user.reserve):
+        #     message = "{} {}".format(message, constants.DYNAMAX)
+        #
+        # # only terastallize on last pokemon. Come back to this later because this is bad.
+        # elif battle.user.active.can_terastallize and all(p.hp == 0 for p in battle.user.reserve):
+        #     message = "{} {}".format(message, constants.TERASTALLIZE)
 
-        # only dynamax on last pokemon
-        if battle.user.active.can_dynamax and all(p.hp == 0 for p in battle.user.reserve):
-            message = "{} {}".format(message, constants.DYNAMAX)
-
-        # only terastallize on last pokemon. Come back to this later because this is bad.
-        elif battle.user.active.can_terastallize and all(p.hp == 0 for p in battle.user.reserve):
-            message = "{} {}".format(message, constants.TERASTALLIZE)
-
-        if battle.user.active.get_move(decision).can_z:
-            message = "{} {}".format(message, constants.ZMOVE)
+        # idk why this explodes on HP ghost but i'm sick of it. its gen 3 who cares.
+        # if battle.user.active.get_move(decision).can_z:
+        #     message = "{} {}".format(message, constants.ZMOVE)
 
     return [message, str(battle.rqid)]
 
